@@ -31,6 +31,11 @@ Setting up a good environment for reinforcement learning is no easy task. Succes
 
 After some experimentation, and [a useful thread on reddit](https://old.reddit.com/r/MachineLearning/comments/axmbc6/d_what_librariesframeworks_do_you_use_for_casual/), I settled on [Ray's RLLib](https://ray.readthedocs.io/en/latest/rllib-training.html). Rllib is a very nice library that handles distributed simulations and centralized updates to the agent. It's very easy to get started, implements a lot of the modern RL algorithms, and scales all the way up to multiple GPUs and even computers.
 
+## Environments
+With open-source RL algorithm implementations doing most of the work, the only work left for the user is to implement a simulation of the task, with suitable observations and possible actions, and a reward function to push the algorithm in the right direction.
+
+Fortunately, there is a standardized way to write custom environments in Python: [OpenAI Gym](https://gym.openai.com/) environments. OpenAI Gym was started as a library of common environments to be used as a standard testbed for algorithms. Most libraries have adopted the format, which means that an environment that supports the Gym API can be used with almost any RL library.
+
 # Starting simple
 From painful past experiences, I knew that in RL, it's best to start simple, ensure that everything works, and add complexity gradually. Coders Strike Back is great in this respect: the initial wood league have only one pod and no collisions. In order to make things even simpler, I handled the steering automatically (always towards the next waypoint, a safe but suboptimal strategy) and only let the agent handle thrust. I also limited observations to the distance to the next waypoint.
 
